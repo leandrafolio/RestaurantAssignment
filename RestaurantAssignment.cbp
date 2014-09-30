@@ -37,8 +37,6 @@
 		<Unit filename="MyDate.h" />
 		<Unit filename="MyTime.cpp" />
 		<Unit filename="MyTime.h" />
-		<Unit filename="WorkDay.cpp" />
-		<Unit filename="WorkDay.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
