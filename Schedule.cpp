@@ -126,3 +126,12 @@ void Schedule::setWorkDay( WorkDay workDayToSet, int weekToSet, int dayToSet )
     }
 
 }
+
+Schedule Schedule::operator = ( const Schedule& newSchedule )
+{
+    for( int i = 0; i < 7; i++ )
+    {
+        workWeekOne[i] = newSchedule.workWeekOne[i];
+        workWeekTwo[i] = newSchedule.workWeekTwo[i];
+    }
+}

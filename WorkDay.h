@@ -19,6 +19,8 @@ public:
     MyTime getScheduledEndTime();
     MyTime getClockInTime();
     MyTime getClockOutTime();
+    float getHoursScheduled();
+    float getHoursWorked();
 
     void setDate( MyDate );
     void setScheduledStartTime( int, int, int );
@@ -31,6 +33,8 @@ public:
     void clockOut();
     float calculateHoursScheduled();
     float calculateHoursWorked();
+
+    WorkDay operator = ( const WorkDay& );
 
 private:
     MyDate date;
