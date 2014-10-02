@@ -22,6 +22,7 @@ public:
     float getTotalWorkedHours();
     void setWorkDay( WorkDay, int, int );
 
+    Schedule operator = ( const Schedule& );
 
 private:
     WorkDay workWeekOne[7];

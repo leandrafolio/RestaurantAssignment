@@ -144,6 +144,7 @@ float WorkDay::calculateHoursScheduled()
     //std::cout << "hours: " << float(timeDifference.getHour()) << std::endl;
     //std::cout << ( float(timeDifference.getHour() )) << std::endl;
 
+    hoursScheduled = hoursScheduledCalculation;
     return hoursScheduledCalculation;
 }
 
@@ -205,5 +206,19 @@ float WorkDay::calculateHoursWorked()
     //std::cout << "hours: " << float(timeDifference.getHour()) << std::endl;
     //std::cout << ( float(timeDifference.getHour() )) << std::endl;
 
+    hoursWorked = hoursWorkedCalculation;
     return hoursWorkedCalculation;
+}
+
+WorkDay WorkDay::operator = ( const WorkDay& newWorkDay )
+{
+    date = newWorkDay.date;
+
+    scheduleStartTime = newWorkDay.scheduleStartTime;
+    scheduleEndTime = newWorkDay.scheduleEndTime;
+    clockInTime = newWorkDay.clockInTime;
+    clockOutTime = newWorkDay.clockOutTime;
+
+    hoursScheduled = newWorkDay.hoursScheduled;
+    hoursWorked = newWorkDay.hoursWorked;
 }
