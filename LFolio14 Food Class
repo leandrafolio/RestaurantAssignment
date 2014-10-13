@@ -1,0 +1,144 @@
+//This is the Food.h part of the class.
+#ifndef FOOD_H
+#define FOOD_H
+
+#include "Ingredient.h"
+#include <string>
+#include <vector>
+
+class Food
+{
+public:
+
+	///Constructors
+	Food();
+	Food(std::string, int, float, std::vector<Ingredient>);
+
+	///Getters and Setters
+	std::string getName();
+	int getSize();
+	float getPrice();
+	std::vector<Ingredient> getIngredients();
+	float getCost();
+
+	void setName(std::string);
+	void setFoodSize(int);
+	void setPrice(float);
+
+	///Member Methods
+	void setCost();
+	void addIngredient(const Ingredient&);
+	void removeIngredient(Ingredient&);
+	int searchForIngredient(Ingredient&);
+
+private:
+	std::string name;
+	int foodSize;
+	float price;
+	float cost;
+	std::vector<Ingredient> listOfIngredient;
+};
+
+#endif // FOOD_H
+
+//This is the Food.cpp part of the class.
+
+#include "Food.h"
+
+Food::Food() :
+name(""), foodSize(0), price(0), cost(0)
+{
+	///Variables set in init list.
+}
+
+Food::Food(std::string newName, int newSize, float newPrice, std::vector<Ingredient> newListOfIngredient) :
+name(newName), foodSize(newSize), price(newPrice), listOfIngredient(newListOfIngredient)
+{
+	///Variables set in init list.
+}
+
+///Getters and Setters
+std::string Food::getName()
+{
+	return name;
+}
+
+int Food::getSize()
+{
+	return foodSize;
+}
+
+float Food::getPrice()
+{
+	return price;
+}
+
+float Food::getCost()
+{
+	return cost;
+}
+
+std::vector<Ingredient> Food::getIngredients()
+{
+	return listOfIngredient;
+}
+
+void Food::setName(std::string name)
+{
+	this->name = name;
+}
+
+void Food::setFoodSize(int size)
+{
+	if (size < 0)
+	{
+		this->foodSize = 0;
+	}
+	else
+	{
+		this->foodSize = size;
+	}
+}
+
+void Food::setPrice(float price)
+{
+	if (price < 0)
+	{
+		this->price = 0;
+	}
+	else
+	{
+		this->price = price;
+	}
+}
+
+void Food::setCost()
+{
+	cost = 0;
+	for (unsigned int i = 0; i < listOfIngredient.size(); ++i)
+	{
+		cost += listOfIngredient[i].getCostOfStock();
+	}
+}
+
+void Food::addIngredient(const Ingredient& ingredient)
+{
+	listOfIngredient.push_back(ingredient);
+}
+
+void Food::removeIngredient(Ingredient& ingredient)
+{
+	int result = searchForIngredient(ingredient);
+	if (result != -1)
+		listOfIngredient.erase(listOfIngredient.begin() + result);
+}
+
+int Food::searchForIngredient(Ingredient& ingredient)
+{
+	for (unsigned int i = 0; i < listOfIngredient.size(); ++i)
+	{
+		if (listOfIngredient[i].getName() == ingredient.getName())
+			return i;
+	}
+	return -1;
+}
